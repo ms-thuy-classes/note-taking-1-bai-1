@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn with Ms. Thúy – English Listening Test (PDF Viewer)</title>
+    <style>
+        :root {
+            --bg: #f5f0fa;
+            --surface: #ffffff;
+            --surface-alt: #faf8ff;
+            --primary: #7c5cbf;
+            --primary-light: #a78bfa;
+            --primary-pastel: #e8e0f5;
+            --accent: #f472b6;
+            --accent-light: #fbcfe8;
+            --success: #34d399;
+            --success-light: #d1fae5;
+            --success-bg: #ecfdf5;
+            --error: #f87171;
+            --error-light: #fee2e2;
+            --error-bg: #fef2f2;
+            --text: #2d1b4e;
+            --text-secondary: #6b5b8a;
+            --text-muted: #9a8cb8;
+            --border: #e5ddf2;
+            --border-light: #f0ebf8;
+            --shadow-sm: 0 1px 3px rgba(124, 92, 191, 0.06), 0 1px 2px rgba(124, 92, 191, 0.04);
+            --shadow: 0 4px 16px rgba(124, 92, 191, 0.08), 0 2px 6px rgba(124, 92, 191, 0.04);
+            --shadow-lg: 0 12px 32px rgba(124, 92, 191, 0.12), 0 4px 12px rgba(124, 92, 191, 0.06);
+            --radius-sm: 8px;
+            --radius: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+            --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --font: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+            --divider-width: 8px;
+            --left-ratio: 0.7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            height: 100%;
+        }
+
+        body {
+            font-family: var(--font);
+            background: linear-gradient(135deg, #f5f0fa 0%, #fdf2f8 30%, #f0f4ff 60%, #f5f0fa 100%);
+            background-attachment: fixed;
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ========== HEADER ========== */
+        .header {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.3px;
+        }
+        .header-brand .icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius);
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: #fff;
+            flex-shrink: 0;
+        }
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .header-badge {
+            font-size: 0.8rem;
+            padding: 6px 14px;
+            border-radius: 20px;
+            background: var(--primary-pastel);
+            color: var(--primary);
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+        }
+
+        /* ========== MAIN LAYOUT ========== */
+        .main-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* ========== LEFT PANEL (Question Panel – PDF viewer) ========== */
+        .left-panel {
+            width: calc(var(--left-ratio) * 100%);
+            min-width: 280px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            background: var(--surface);
+            border-right: 1px solid var(--border);
+            transition: width 0.05s ease-out;
+            position: relative;
+        }
+        .left-panel::-webkit-scrollbar {
+            width: 6px;
+        }
+        .left-panel::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .left-panel::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 3px;
+        }
+        .left-panel::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
+        }
+
+        /* Test info card */
+        .test-info-card {
+            background: var(--surface-alt);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: 14px 18px;
+            margin: 16px 16px 0 16px;
+            box-shadow: var(--shadow-sm);
+            flex-shrink: 0;
+        }
+        .test-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 4px;
+            letter-spacing: -0.3px;
+        }
+        .test-meta {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        /* ========== AUDIO PLAYER (sticky inside left panel) ========== */
+        .audio-section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 14px 16px;
+            margin: 16px 16px 12px 16px;
+            box-shadow: var(--shadow);
+            flex-shrink: 0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .audio-selector-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+        .audio-selector-label {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            letter-spacing: 0.2px;
+        }
+        .audio-cd-chips {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .audio-cd-chip {
+            padding: 7px 15px;
+            border-radius: 20px;
+            border: 2px solid var(--border);
+            background: var(--surface);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            white-space: nowrap;
+            user-select: none;
+            letter-spacing: 0.3px;
+        }
+        .audio-cd-chip:hover {
+            border-color: var(--primary-light);
+            color: var(--primary);
+            background: var(--primary-pastel);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-sm);
+        }
+        .audio-cd-chip.active {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+            box-shadow: var(--shadow);
+            transform: translateY(-1px);
+        }
+
+        /* Custom audio player */
+        .custom-audio-player {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+        .audio-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: var(--primary);
+            color: #fff;
+            cursor: pointer;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            flex-shrink: 0;
+            box-shadow: var(--shadow-sm);
+        }
+        .audio-btn:hover {
+            background: var(--primary-light);
+            transform: scale(1.06);
+            box-shadow: var(--shadow);
+        }
+        .audio-btn:active {
+            transform: scale(0.95);
+        }
+        .audio-btn.playing {
+            background: var(--accent);
+        }
+        .audio-time-display {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            min-width: 95px;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+        .audio-seek-container {
+            flex: 1;
+            min-width: 100px;
+            position: relative;
+        }
+        .audio-seek-bar {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: linear-gradient(to right, var(--primary-light) 0%, var(--border) 0%);
+            outline: none;
+            cursor: pointer;
+            transition: background 0.1s;
+        }
+        .audio-seek-bar::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            border: 3px solid #fff;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        .audio-seek-bar::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: var(--shadow-lg);
+        }
+        .audio-volume-speed {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+        .audio-volume-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            padding: 4px;
+            border-radius: 6px;
+        }
+        .audio-volume-btn:hover {
+            color: var(--primary);
+            background: var(--primary-pastel);
+        }
+        .audio-volume-slider {
+            -webkit-appearance: none;
+            width: 60px;
+            height: 4px;
+            border-radius: 2px;
+            background: var(--border);
+            outline: none;
+            cursor: pointer;
+        }
+        .audio-volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            border: 2px solid #fff;
+            box-shadow: var(--shadow-sm);
+        }
+        .audio-speed-select {
+            padding: 5px 8px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            background: var(--surface);
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-family: var(--font);
+            transition: var(--transition);
+        }
+        .audio-speed-select:hover {
+            border-color: var(--primary-light);
+        }
+        .audio-cd-label {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--primary);
+            white-space: nowrap;
+            letter-spacing: 0.3px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* PDF viewer container – fills remaining vertical space */
+        .pdf-container {
+            flex: 1;
+            margin: 0 16px 16px 16px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            background: #f9f9f9;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .pdf-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .pdf-fallback {
+            padding: 20px;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        /* ========== DIVIDER ========== */
+        .resizable-divider {
+            width: var(--divider-width);
+            min-width: 6px;
+            background: var(--border-light);
+            cursor: col-resize;
+            flex-shrink: 0;
+            transition: background var(--transition);
+            position: relative;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .resizable-divider:hover,
+        .resizable-divider.dragging {
+            background: var(--primary-light);
+        }
+        .resizable-divider::after {
+            content: '';
+            position: absolute;
+            width: 3px;
+            height: 40px;
+            background: var(--text-muted);
+            border-radius: 2px;
+            opacity: 0.5;
+            transition: var(--transition);
+            pointer-events: none;
+        }
+        .resizable-divider:hover::after,
+        .resizable-divider.dragging::after {
+            opacity: 1;
+            background: #fff;
+            height: 50px;
+        }
+
+        /* ========== RIGHT PANEL (ANSWER SHEET) ========== */
+        .right-panel {
+            flex: 1;
+            min-width: 240px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 20px 18px 32px;
+            background: var(--surface-alt);
+            position: relative;
+        }
+        .right-panel::-webkit-scrollbar {
+            width: 5px;
+        }
+        .right-panel::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .right-panel::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 3px;
+        }
+        .answer-sheet-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            position: sticky;
+            top: 0;
+            background: var(--surface-alt);
+            padding: 8px 0;
+            z-index: 5;
+            letter-spacing: -0.2px;
+        }
+        .answer-sheet-title .icon {
+            font-size: 1.3rem;
+        }
+        .answer-item {
+            padding: 10px 12px;
+            margin-bottom: 8px;
+            border-radius: var(--radius-sm);
+            border: 1px solid transparent;
+            transition: var(--transition);
+            background: var(--surface);
+            box-shadow: var(--shadow-sm);
+        }
+        .answer-item:hover {
+            border-color: var(--border);
+        }
+        .answer-item.answer-correct {
+            border-color: var(--success);
+            background: var(--success-bg);
+        }
+        .answer-item.answer-wrong {
+            border-color: var(--error);
+            background: var(--error-bg);
+        }
+        .answer-item-label {
+            font-weight: 700;
+            font-size: 0.82rem;
+            color: var(--primary);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .answer-item-label .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            display: inline-block;
+        }
+        .answer-mc-options {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .answer-mc-options label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            padding: 5px 10px;
+            border-radius: 16px;
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+            user-select: none;
+            background: var(--surface);
+        }
+        .answer-mc-options label:hover {
+            background: var(--primary-pastel);
+            border-color: var(--primary-light);
+        }
+        .answer-mc-options input[type="radio"] {
+            accent-color: var(--primary);
+            width: 15px;
+            height: 15px;
+            cursor: pointer;
+        }
+        .answer-mc-options label.checked-correct {
+            background: var(--success-light);
+            border-color: var(--success);
+            font-weight: 600;
+        }
+        .answer-mc-options label.checked-wrong {
+            background: var(--error-light);
+            border-color: var(--error);
+            font-weight: 600;
+        }
+        .answer-input {
+            width: 100%;
+            padding: 8px 12px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            font-size: 0.9rem;
+            font-family: var(--font);
+            transition: var(--transition);
+            background: var(--surface);
+            color: var(--text);
+        }
+        .answer-input:focus {
+            outline: 2px solid var(--primary-light);
+            outline-offset: 2px;
+            border-color: var(--primary);
+            box-shadow: var(--shadow-sm);
+        }
+        .answer-input.input-correct {
+            border-color: var(--success);
+            background: var(--success-bg);
+            color: #065f46;
+            font-weight: 600;
+        }
+        .answer-input.input-wrong {
+            border-color: var(--error);
+            background: var(--error-bg);
+            color: #991b1b;
+        }
+        .answer-feedback {
+            font-size: 0.78rem;
+            margin-top: 4px;
+            font-weight: 600;
+            display: none;
+        }
+        .answer-feedback.show {
+            display: block;
+        }
+        .answer-feedback.correct-fb {
+            color: #065f46;
+        }
+        .answer-feedback.wrong-fb {
+            color: #991b1b;
+        }
+
+        /* ========== BOTTOM BAR ========== */
+        .bottom-bar {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            flex-shrink: 0;
+            z-index: 100;
+            box-shadow: 0 -2px 10px rgba(124, 92, 191, 0.04);
+        }
+        .btn {
+            padding: 9px 18px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.2px;
+            transition: var(--transition);
+            font-family: var(--font);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            user-select: none;
+        }
+        .btn:active {
+            transform: scale(0.96);
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+            box-shadow: var(--shadow);
+        }
+        .btn-primary:hover {
+            background: var(--primary-light);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-1px);
+        }
+        .btn-outline {
+            background: var(--surface);
+            color: var(--primary);
+            border: 2px solid var(--border);
+        }
+        .btn-outline:hover {
+            border-color: var(--primary);
+            background: var(--primary-pastel);
+            transform: translateY(-1px);
+        }
+        .btn-ghost {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 2px solid transparent;
+        }
+        .btn-ghost:hover {
+            background: var(--surface-alt);
+            border-color: var(--border);
+            color: var(--text);
+        }
+        .btn-success {
+            background: var(--success);
+            color: #fff;
+            box-shadow: var(--shadow-sm);
+        }
+        .btn-success:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-1px);
+        }
+        .btn-danger {
+            background: #fff;
+            color: var(--error);
+            border: 2px solid var(--error-light);
+        }
+        .btn-danger:hover {
+            background: var(--error-bg);
+            border-color: var(--error);
+            transform: translateY(-1px);
+        }
+        .progress-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: auto;
+            flex-shrink: 0;
+        }
+        .progress-text {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+        .progress-bar-outer {
+            width: 100px;
+            height: 8px;
+            border-radius: 4px;
+            background: var(--border-light);
+            overflow: hidden;
+        }
+        .progress-bar-inner {
+            height: 100%;
+            border-radius: 4px;
+            background: linear-gradient(90deg, var(--primary-light), var(--primary));
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ========== RESULT TOAST ========== */
+        .result-toast {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            padding: 16px 24px;
+            box-shadow: var(--shadow-lg);
+            z-index: 999;
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            flex-wrap: wrap;
+            border: 1px solid var(--border);
+            animation: slideDown 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+        .result-toast .score-item {
+            text-align: center;
+            padding: 0 10px;
+        }
+        .result-toast .score-value {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        .result-toast .score-value.green {
+            color: var(--success);
+        }
+        .result-toast .score-value.red {
+            color: var(--error);
+        }
+        .result-toast .score-value.purple {
+            color: var(--primary);
+        }
+        .result-toast .divider-line {
+            width: 1px;
+            height: 30px;
+            background: var(--border);
+            flex-shrink: 0;
+        }
+
+        /* ========== MOBILE TAB NAV ========== */
+        .mobile-tab-nav {
+            display: none;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            flex-shrink: 0;
+            z-index: 90;
+        }
+        .mobile-tab-btn {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            font-family: var(--font);
+            letter-spacing: 0.2px;
+            border-bottom: 3px solid transparent;
+        }
+        .mobile-tab-btn.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+            background: var(--primary-pastel);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 1024px) {
+            .left-panel {
+                width: 65%;
+            }
+            .right-panel {
+                min-width: 200px;
+            }
+        }
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+            }
+            .left-panel,
+            .right-panel {
+                width: 100% !important;
+                min-width: unset;
+                flex: none;
+                overflow-y: auto;
+                max-height: none;
+            }
+            .right-panel {
+                display: none;
+            }
+            .right-panel.mobile-visible {
+                display: block;
+            }
+            .left-panel.mobile-hidden {
+                display: none;
+            }
+            .resizable-divider {
+                display: none;
+            }
+            .mobile-tab-nav {
+                display: flex;
+            }
+            .bottom-bar {
+                gap: 6px;
+                padding: 8px 12px;
+            }
+            .btn {
+                padding: 7px 12px;
+                font-size: 0.78rem;
+            }
+            .progress-container {
+                margin-left: 0;
+            }
+            .header {
+                padding: 8px 14px;
+            }
+            .header-brand {
+                font-size: 1rem;
+            }
+            .header-brand .icon {
+                width: 32px;
+                height: 32px;
+                font-size: 1.1rem;
+            }
+            .audio-seek-container {
+                min-width: 60px;
+            }
+            .audio-volume-slider {
+                width: 40px;
+            }
+            .pdf-container {
+                margin: 0 8px 8px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="header">
+        <div class="header-brand">
+            <div class="icon">🎧</div>
+            <span>Learn with Ms. Thúy</span>
+        </div>
+        <div class="header-actions">
+            <span class="header-badge">📝 Listening Test</span>
+            <span class="header-badge" id="currentCdBadge">💿 CD1</span>
+        </div>
+    </header>
+
+    <!-- ==================== MOBILE TAB NAV ==================== -->
+    <nav class="mobile-tab-nav" id="mobileTabNav">
+        <button class="mobile-tab-btn active" id="tabQuestionsBtn" onclick="switchMobileTab('questions')">
+            📋 PDF Test
+        </button>
+        <button class="mobile-tab-btn" id="tabAnswersBtn" onclick="switchMobileTab('answers')">
+            📝 Answer Sheet
+        </button>
+    </nav>
+
+    <!-- ==================== MAIN CONTAINER ==================== -->
+    <div class="main-container" id="mainContainer">
+
+        <!-- ========== LEFT PANEL: PDF Viewer + Audio ========== -->
+        <div class="left-panel" id="leftPanel">
+            <!-- Test Info -->
+            <div class="test-info-card">
+                <div class="test-title">📖 English Listening Comprehension Test</div>
+                <div class="test-meta">
+                    <span>📋 20 Questions</span>
+                    <span>⏱️ ~35 minutes</span>
+                    <span>💿 4 Audio CDs</span>
+                    <span>🎯 Level: Intermediate</span>
+                </div>
+            </div>
+
+            <!-- Audio Section -->
+            <div class="audio-section" id="audioSection">
+                <div class="audio-selector-row">
+                    <span class="audio-selector-label">🎵 Select Audio:</span>
+                    <div class="audio-cd-chips" id="cdChips">
+                        <button class="audio-cd-chip active" data-cd="CD1" onclick="selectCD('CD1')">
+                            💿 CD1
+                        </button>
+                        <button class="audio-cd-chip" data-cd="CD2" onclick="selectCD('CD2')">
+                            💿 CD2
+                        </button>
+                        <button class="audio-cd-chip" data-cd="CD3" onclick="selectCD('CD3')">
+                            💿 CD3
+                        </button>
+                        <button class="audio-cd-chip" data-cd="CD4" onclick="selectCD('CD4')">
+                            💿 CD4
+                        </button>
+                    </div>
+                </div>
+                <!-- Custom Audio Player -->
+                <div class="custom-audio-player">
+                    <span class="audio-cd-label" id="audioCdLabel">💿 CD1</span>
+                    <button class="audio-btn" id="playPauseBtn" onclick="togglePlay()" title="Play / Pause">
+                        ▶︎
+                    </button>
+                    <span class="audio-time-display" id="audioTimeDisplay">00:00 / 00:00</span>
+                    <div class="audio-seek-container">
+                        <input type="range" class="audio-seek-bar" id="audioSeekBar" value="0" min="0" max="100"
+                        step="0.1" oninput="seekAudio(this.value)" title="Seek">
+                    </div>
+                    <div class="audio-volume-speed">
+                        <button class="audio-volume-btn" id="volumeBtn" onclick="toggleMute()" title="Volume">🔊</button>
+                        <input type="range" class="audio-volume-slider" id="audioVolumeSlider" value="80" min="0" max="100"
+                        oninput="setVolume(this.value)" title="Volume">
+                        <select class="audio-speed-select" id="audioSpeedSelect" onchange="setSpeed(this.value)" title="Playback Speed">
+                            <option value="0.5">0.5x</option>
+                            <option value="0.75">0.75x</option>
+                            <option value="1" selected>1x</option>
+                            <option value="1.25">1.25x</option>
+                            <option value="1.5">1.5x</option>
+                            <option value="2">2x</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Hidden native audio element -->
+                <audio id="nativeAudio" preload="metadata" style="display:none;"></audio>
+            </div>
+
+            <!-- PDF Viewer (from GitHub) -->
+            <div class="pdf-container" id="pdfContainer">
+                <iframe id="pdfIframe"
+                        src=""
+                        title="Test PDF"
+                        allowfullscreen>
+                </iframe>
+                <div class="pdf-fallback" id="pdfFallback" style="display:none;">
+                    <p>⚠️ Unable to load PDF. <br>Please make sure the link is accessible.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== RESIZABLE DIVIDER ========== -->
+        <div class="resizable-divider" id="resizableDivider" title="Drag to resize panels"></div>
+
+        <!-- ========== RIGHT PANEL: Answer Sheet ========== -->
+        <div class="right-panel" id="rightPanel">
+            <div class="answer-sheet-title">
+                <span class="icon">📝</span> Answer Sheet
+            </div>
+            <div id="answerSheetContainer">
+                <!-- Answer items rendered by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== BOTTOM BAR ==================== -->
+    <div class="bottom-bar">
+        <button class="btn btn-success" onclick="checkAnswers()" title="Check all answers">
+            ✅ CHECK ANSWERS
+        </button>
+        <button class="btn btn-danger" onclick="resetAnswers()" title="Clear all answers">
+            🔄 RESET
+        </button>
+        <button class="btn btn-ghost" onclick="scrollToTop()" title="Scroll to top of PDF">
+            ⬆ Top
+        </button>
+        <div class="progress-container">
+            <span class="progress-text" id="progressText">Completed: 0/20</span>
+            <div class="progress-bar-outer">
+                <div class="progress-bar-inner" id="progressBarInner" style="width: 0%;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== RESULT TOAST (hidden by default) ==================== -->
+    <div class="result-toast" id="resultToast" style="display:none;"></div>
+
+    <script>
+        (function() {
+            // ==================== CONFIGURATION ====================
+            const testConfig = {
+                title: 'English Listening Comprehension Test',
+                totalQuestions: 20,
+                audioCDs: ['CD1', 'CD2', 'CD3', 'CD4'],
+                audioSources: {
+                    'CD1': 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+                    'CD2': 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
+                    'CD3': 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3',
+                    'CD4': 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3',
+                },
+                // 🔗 Link file PDF từ GitHub (raw URL). Thay bằng link thật của bạn.
+                pdfUrl ="https://ms-thuy-classes.github.io/audio/pdf/test%201.pdf";,
+            };
+
+            // ==================== QUESTIONS DATA (vẫn cần cho answer sheet) ====================
+            const questionsData = [
+                { id: 1, type: 'mc', cd: 'CD1', questionText: 'What is the main topic?',
+                    options: ['Travel', 'Work', 'Study', 'Food'], correctAnswer: 0 },
+                { id: 2, type: 'mc', cd: 'CD1', questionText: 'Where to go?',
+                    options: ['London', 'Paris', 'Tokyo', 'New York'], correctAnswer: 1 },
+                { id: 3, type: 'mc', cd: 'CD1', questionText: 'How long?',
+                    options: ['3 days', '5 days', '7 days', '10 days'], correctAnswer: 2 },
+                { id: 4, type: 'mc', cd: 'CD1', questionText: 'Transport?',
+                    options: ['Bus', 'Train', 'Airplane', 'Car'], correctAnswer: 1 },
+                { id: 5, type: 'mc', cd: 'CD1', questionText: 'Weather?',
+                    options: ['Sunny', 'Rainy', 'Snowy', 'Cloudy'], correctAnswer: 0 },
+                { id: 6, type: 'mc', cd: 'CD2', questionText: 'Who is speaking to?',
+                    options: ['Colleague', 'Customer', 'Friend', 'Teacher'], correctAnswer: 0 },
+                { id: 7, type: 'mc', cd: 'CD2', questionText: 'Meeting time?',
+                    options: ['8 AM', '9 AM', '10 AM', '11 AM'], correctAnswer: 1 },
+                { id: 8, type: 'mc', cd: 'CD2', questionText: 'Which department?',
+                    options: ['Marketing', 'Engineering', 'Sales', 'HR'], correctAnswer: 1 },
+                { id: 9, type: 'fill', cd: 'CD2', questionText: 'Manager name',
+                    correctAnswer: 'manager' },
+                { id: 10, type: 'fill', cd: 'CD2', questionText: 'Deadline day',
+                    correctAnswer: 'friday' },
+                { id: 11, type: 'mc', cd: 'CD3', questionText: 'Main ingredient?',
+                    options: ['Chicken', 'Beef', 'Tofu', 'Fish'], correctAnswer: 0 },
+                { id: 12, type: 'number', cd: 'CD3', questionText: 'Number of people',
+                    correctAnswer: '45' },
+                { id: 13, type: 'number', cd: 'CD3', questionText: 'Total cost',
+                    correctAnswer: '120' },
+                { id: 14, type: 'date', cd: 'CD3', questionText: 'Registration deadline',
+                    correctAnswer: '2024-12-25' },
+                { id: 15, type: 'short', cd: 'CD3', questionText: 'City recommended',
+                    correctAnswer: 'barcelona' },
+                { id: 16, type: 'mc', cd: 'CD4', questionText: 'Speaker opinion?',
+                    options: ['Positive', 'Negative', 'Neutral', 'Uncertain'], correctAnswer: 0 },
+                { id: 17, type: 'mc', cd: 'CD4', questionText: 'Proposed solution?',
+                    options: ['Increase budget', 'Hire staff', 'Extend deadline', 'Reduce scope'],
+                correctAnswer: 2 },
+                { id: 18, type: 'fill', cd: 'CD4', questionText: 'Key to success',
+                    correctAnswer: 'communication' },
+                { id: 19, type: 'date', cd: 'CD4', questionText: 'Final decision date',
+                    correctAnswer: '2025-01-15' },
+                { id: 20, type: 'short', cd: 'CD4', questionText: 'Most important skill',
+                    correctAnswer: 'listening' },
+            ];
+
+            // ==================== STATE ====================
+            let currentCD = 'CD1';
+            let userAnswers = {};
+            let checkedState = {};
+            let isPlaying = false;
+            let currentVolume = 80;
+            let isMuted = false;
+            let currentSpeed = 1;
+
+            // ==================== DOM REFERENCES ====================
+            const leftPanel = document.getElementById('leftPanel');
+            const rightPanel = document.getElementById('rightPanel');
+            const resizableDivider = document.getElementById('resizableDivider');
+            const mainContainer = document.getElementById('mainContainer');
+            const answerSheetContainer = document.getElementById('answerSheetContainer');
+            const nativeAudio = document.getElementById('nativeAudio');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const audioTimeDisplay = document.getElementById('audioTimeDisplay');
+            const audioSeekBar = document.getElementById('audioSeekBar');
+            const audioVolumeSlider = document.getElementById('audioVolumeSlider');
+            const audioSpeedSelect = document.getElementById('audioSpeedSelect');
+            const audioCdLabel = document.getElementById('audioCdLabel');
+            const volumeBtn = document.getElementById('volumeBtn');
+            const resultToast = document.getElementById('resultToast');
+            const progressText = document.getElementById('progressText');
+            const progressBarInner = document.getElementById('progressBarInner');
+            const currentCdBadge = document.getElementById('currentCdBadge');
+            const pdfIframe = document.getElementById('pdfIframe');
+            const pdfFallback = document.getElementById('pdfFallback');
+
+            // ==================== LOCAL STORAGE ====================
+            const STORAGE_KEY = 'english_listening_test_answers';
+
+            function saveToLocalStorage() {
+                try {
+                    const data = {
+                        userAnswers,
+                        currentCD,
+                        currentVolume,
+                        isMuted,
+                        currentSpeed,
+                        checkedState,
+                    };
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+                } catch (e) {}
+            }
+
+            function loadFromLocalStorage() {
+                try {
+                    const raw = localStorage.getItem(STORAGE_KEY);
+                    if (raw) {
+                        const data = JSON.parse(raw);
+                        userAnswers = data.userAnswers || {};
+                        currentCD = data.currentCD || 'CD1';
+                        currentVolume = data.currentVolume !== undefined ? data.currentVolume : 80;
+                        isMuted = data.isMuted || false;
+                        currentSpeed = data.currentSpeed || 1;
+                        checkedState = data.checkedState || {};
+                    }
+                } catch (e) {
+                    userAnswers = {};
+                    checkedState = {};
+                }
+            }
+
+            // ==================== PDF LOADER ====================
+            function loadPDF() {
+                const url = testConfig.pdfUrl;
+                if (!url) {
+                    pdfIframe.style.display = 'none';
+                    pdfFallback.style.display = 'block';
+                    return;
+                }
+                pdfIframe.src = url;
+                pdfIframe.onload = () => {
+                    pdfFallback.style.display = 'none';
+                    pdfIframe.style.display = 'block';
+                };
+                pdfIframe.onerror = () => {
+                    pdfIframe.style.display = 'none';
+                    pdfFallback.style.display = 'block';
+                };
+            }
+
+            // ==================== AUDIO PLAYER ====================
+            function selectCD(cd) {
+                currentCD = cd;
+                document.querySelectorAll('.audio-cd-chip').forEach(chip => {
+                    chip.classList.toggle('active', chip.dataset.cd === cd);
+                });
+                audioCdLabel.textContent = '💿 ' + cd;
+                currentCdBadge.textContent = '💿 ' + cd;
+                nativeAudio.src = testConfig.audioSources[cd] || '';
+                nativeAudio.load();
+                isPlaying = false;
+                updatePlayPauseButton();
+                audioTimeDisplay.textContent = '00:00 / 00:00';
+                audioSeekBar.value = 0;
+                audioSeekBar.style.background =
+                    'linear-gradient(to right, var(--primary-light) 0%, var(--border) 0%)';
+                saveToLocalStorage();
+            }
+
+            function togglePlay() {
+                if (!nativeAudio.src || nativeAudio.src === window.location.href) {
+                    selectCD(currentCD);
+                }
+                if (nativeAudio.paused) {
+                    nativeAudio.play().then(() => {
+                        isPlaying = true;
+                        updatePlayPauseButton();
+                    }).catch(() => {
+                        isPlaying = false;
+                        updatePlayPauseButton();
+                    });
+                } else {
+                    nativeAudio.pause();
+                    isPlaying = false;
+                    updatePlayPauseButton();
+                }
+            }
+
+            function updatePlayPauseButton() {
+                playPauseBtn.textContent = isPlaying ? '⏸' : '▶︎';
+                playPauseBtn.classList.toggle('playing', isPlaying);
+            }
+
+            function seekAudio(value) {
+                if (nativeAudio.duration && isFinite(nativeAudio.duration)) {
+                    nativeAudio.currentTime = (value / 100) * nativeAudio.duration;
+                }
+                updateSeekBarBackground(value);
+            }
+
+            function updateSeekBarBackground(value) {
+                const pct = parseFloat(value) || 0;
+                audioSeekBar.style.background =
+                    `linear-gradient(to right, var(--primary-light) ${pct}%, var(--border) ${pct}%)`;
+            }
+
+            function setVolume(value) {
+                currentVolume = parseInt(value);
+                nativeAudio.volume = currentVolume / 100;
+                isMuted = (currentVolume === 0);
+                updateVolumeIcon();
+                saveToLocalStorage();
+            }
+
+            function toggleMute() {
+                if (isMuted) {
+                    isMuted = false;
+                    nativeAudio.volume = currentVolume / 100;
+                    audioVolumeSlider.value = currentVolume;
+                } else {
+                    isMuted = true;
+                    nativeAudio.volume = 0;
+                    audioVolumeSlider.value = 0;
+                }
+                updateVolumeIcon();
+                saveToLocalStorage();
+            }
+
+            function updateVolumeIcon() {
+                if (isMuted || currentVolume === 0) volumeBtn.textContent = '🔇';
+                else if (currentVolume < 40) volumeBtn.textContent = '🔉';
+                else volumeBtn.textContent = '🔊';
+            }
+
+            function setSpeed(value) {
+                currentSpeed = parseFloat(value);
+                nativeAudio.playbackRate = currentSpeed;
+                saveToLocalStorage();
+            }
+
+            function formatTime(seconds) {
+                if (!isFinite(seconds) || seconds < 0) return '00:00';
+                const mins = Math.floor(seconds / 60);
+                const secs = Math.floor(seconds % 60);
+                return String(mins).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
+            }
+
+            nativeAudio.addEventListener('loadedmetadata', () => {
+                audioTimeDisplay.textContent = '00:00 / ' + formatTime(nativeAudio.duration);
+                audioSeekBar.value = 0;
+                updateSeekBarBackground(0);
+            });
+            nativeAudio.addEventListener('timeupdate', () => {
+                if (nativeAudio.duration && isFinite(nativeAudio.duration)) {
+                    const pct = (nativeAudio.currentTime / nativeAudio.duration) * 100;
+                    audioSeekBar.value = pct;
+                    updateSeekBarBackground(pct);
+                    audioTimeDisplay.textContent =
+                        formatTime(nativeAudio.currentTime) + ' / ' + formatTime(nativeAudio.duration);
+                }
+            });
+            nativeAudio.addEventListener('play', () => {
+                isPlaying = true;
+                updatePlayPauseButton();
+            });
+            nativeAudio.addEventListener('pause', () => {
+                isPlaying = false;
+                updatePlayPauseButton();
+            });
+            nativeAudio.addEventListener('ended', () => {
+                isPlaying = false;
+                updatePlayPauseButton();
+                audioSeekBar.value = 0;
+                updateSeekBarBackground(0);
+                audioTimeDisplay.textContent = '00:00 / ' + formatTime(nativeAudio.duration || 0);
+            });
+            nativeAudio.addEventListener('error', () => {
+                isPlaying = false;
+                updatePlayPauseButton();
+                console.warn('Audio file could not be loaded for ' + currentCD);
+            });
+
+            // ==================== ANSWER SHEET RENDERING ====================
+            function renderAnswerSheet() {
+                answerSheetContainer.innerHTML = '';
+                questionsData.forEach((q) => {
+                    const item = document.createElement('div');
+                    item.className = 'answer-item';
+                    item.id = 'answer-item-' + q.id;
+                    item.setAttribute('data-qid', q.id);
+
+                    const label = document.createElement('div');
+                    label.className = 'answer-item-label';
+                    label.innerHTML =
+                        '<span class="dot"></span> ' + q.id + '. <span style="font-weight:400;font-size:0.75rem;color:var(--text-muted);">[' +
+                        q.type.toUpperCase() + ']</span>';
+                    item.appendChild(label);
+
+                    if (q.type === 'mc') {
+                        const optsDiv = document.createElement('div');
+                        optsDiv.className = 'answer-mc-options';
+                        const letters = ['A', 'B', 'C', 'D'];
+                        q.options.forEach((opt, oi) => {
+                            const lbl = document.createElement('label');
+                            const radio = document.createElement('input');
+                            radio.type = 'radio';
+                            radio.name = 'answer-q-' + q.id;
+                            radio.value = oi;
+                            radio.setAttribute('data-qid', q.id);
+                            radio.setAttribute('data-opt-index', oi);
+                            if (userAnswers[q.id] !== undefined && parseInt(
+                                    userAnswers[q.id]) === oi) {
+                                radio.checked = true;
+                            }
+                            radio.addEventListener('change', function() {
+                                userAnswers[q.id] = parseInt(this.value);
+                                checkedState[q.id] = false;
+                                saveToLocalStorage();
+                                updateProgress();
+                                clearHighlightsForQuestion(q.id);
+                            });
+                            lbl.appendChild(radio);
+                            lbl.appendChild(document.createTextNode(' ' + letters[oi]));
+                            optsDiv.appendChild(lbl);
+                        });
+                        item.appendChild(optsDiv);
+                    } else {
+                        const input = document.createElement('input');
+                        input.className = 'answer-input';
+                        input.id = 'input-q-' + q.id;
+                        input.setAttribute('data-qid', q.id);
+                        if (q.type === 'fill' || q.type === 'short') {
+                            input.type = 'text';
+                            input.placeholder = 'Type your answer...';
+                        } else if (q.type === 'number') {
+                            input.type = 'number';
+                            input.placeholder = 'Enter a number...';
+                        } else if (q.type === 'date') {
+                            input.type = 'date';
+                        }
+                        if (userAnswers[q.id] !== undefined) input.value = userAnswers[q.id];
+                        input.addEventListener('input', function() {
+                            userAnswers[q.id] = this.value;
+                            checkedState[q.id] = false;
+                            saveToLocalStorage();
+                            updateProgress();
+                            clearHighlightsForQuestion(q.id);
+                        });
+                        item.appendChild(input);
+                        const fb = document.createElement('div');
+                        fb.className = 'answer-feedback';
+                        fb.id = 'feedback-q-' + q.id;
+                        item.appendChild(fb);
+                    }
+                    answerSheetContainer.appendChild(item);
+                });
+                updateProgress();
+            }
+
+            function clearHighlightsForQuestion(qid) {
+                const aItem = document.getElementById('answer-item-' + qid);
+                if (aItem) {
+                    aItem.classList.remove('answer-correct', 'answer-wrong');
+                    aItem.querySelectorAll('label').forEach(lbl => {
+                        lbl.classList.remove('checked-correct', 'checked-wrong');
+                    });
+                    const input = document.getElementById('input-q-' + qid);
+                    if (input) input.classList.remove('input-correct', 'input-wrong');
+                    const fb = document.getElementById('feedback-q-' + qid);
+                    if (fb) {
+                        fb.classList.remove('show', 'correct-fb', 'wrong-fb');
+                        fb.textContent = '';
+                    }
+                }
+            }
+
+            function clearAllHighlights() {
+                questionsData.forEach(q => clearHighlightsForQuestion(q.id));
+                checkedState = {};
+                resultToast.style.display = 'none';
+            }
+
+            // ==================== CHECK ANSWERS ====================
+            function checkAnswers() {
+                clearAllHighlights();
+                let correctCount = 0;
+                let wrongCount = 0;
+                const total = questionsData.length;
+
+                questionsData.forEach(q => {
+                    const userAnswer = userAnswers[q.id];
+                    let isCorrect = false;
+
+                    if (userAnswer === undefined || userAnswer === null || userAnswer === '') {
+                        isCorrect = false;
+                    } else if (q.type === 'mc') {
+                        isCorrect = (parseInt(userAnswer) === q.correctAnswer);
+                    } else if (q.type === 'fill' || q.type === 'short') {
+                        const userStr = String(userAnswer).trim().toLowerCase();
+                        const correctStr = String(q.correctAnswer).trim().toLowerCase();
+                        isCorrect = (userStr === correctStr);
+                    } else if (q.type === 'number') {
+                        isCorrect = (parseFloat(userAnswer) === parseFloat(q.correctAnswer));
+                    } else if (q.type === 'date') {
+                        isCorrect = (String(userAnswer).trim() === String(q.correctAnswer).trim());
+                    } else {
+                        isCorrect = (String(userAnswer).trim().toLowerCase() === String(q.correctAnswer)
+                            .trim().toLowerCase());
+                    }
+
+                    checkedState[q.id] = true;
+
+                    if (isCorrect) {
+                        correctCount++;
+                        applyCorrectHighlight(q);
+                    } else {
+                        wrongCount++;
+                        applyWrongHighlight(q, userAnswer);
+                    }
+                });
+
+                updateProgress();
+                const score = correctCount;
+                const percentage = total > 0 ? ((correctCount / total) * 100).toFixed(2) : '0.00';
+                resultToast.innerHTML = `
+                    <div class="score-item"><div class="score-value green">✅ ${correctCount}</div><div style="font-size:0.7rem;color:var(--text-muted);">Correct</div></div>
+                    <div class="divider-line"></div>
+                    <div class="score-item"><div class="score-value red">❌ ${wrongCount}</div><div style="font-size:0.7rem;color:var(--text-muted);">Wrong</div></div>
+                    <div class="divider-line"></div>
+                    <div class="score-item"><div class="score-value purple">📊 ${score}/${total}</div><div style="font-size:0.7rem;color:var(--text-muted);">Score</div></div>
+                    <div class="divider-line"></div>
+                    <div class="score-item"><div class="score-value" style="color:${percentage >= 70 ? 'var(--success)' : 'var(--error)'};">${percentage}%</div><div style="font-size:0.7rem;color:var(--text-muted);">Percentage</div></div>
+                    <button class="btn btn-ghost" onclick="document.getElementById('resultToast').style.display='none'">✕</button>
+                `;
+                resultToast.style.display = 'flex';
+                saveToLocalStorage();
+            }
+
+            function applyCorrectHighlight(q) {
+                const aItem = document.getElementById('answer-item-' + q.id);
+                if (aItem) {
+                    aItem.classList.add('answer-correct');
+                    if (q.type === 'mc') {
+                        const labels = aItem.querySelectorAll('label');
+                        labels.forEach((lbl, oi) => {
+                            if (oi === q.correctAnswer) lbl.classList.add('checked-correct');
+                        });
+                    } else {
+                        const input = document.getElementById('input-q-' + q.id);
+                        if (input) input.classList.add('input-correct');
+                        const fb = document.getElementById('feedback-q-' + q.id);
+                        if (fb) {
+                            fb.textContent = '✅ Correct!';
+                            fb.classList.add('show', 'correct-fb');
+                        }
+                    }
+                }
+            }
+
+            function applyWrongHighlight(q, userAnswer) {
+                const aItem = document.getElementById('answer-item-' + q.id);
+                if (aItem) {
+                    aItem.classList.add('answer-wrong');
+                    if (q.type === 'mc') {
+                        const labels = aItem.querySelectorAll('label');
+                        labels.forEach((lbl, oi) => {
+                            if (oi === q.correctAnswer) lbl.classList.add('checked-correct');
+                            if (userAnswer !== undefined && parseInt(userAnswer) === oi && oi !== q
+                                .correctAnswer) {
+                                lbl.classList.add('checked-wrong');
+                            }
+                        });
+                    } else {
+                        const input = document.getElementById('input-q-' + q.id);
+                        if (input) input.classList.add('input-wrong');
+                        const fb = document.getElementById('feedback-q-' + q.id);
+                        if (fb) {
+                            fb.textContent = '❌ Correct answer: ' + q.correctAnswer;
+                            fb.classList.add('show', 'wrong-fb');
+                        }
+                    }
+                }
+            }
+
+            // ==================== PROGRESS ====================
+            function updateProgress() {
+                let completed = 0;
+                questionsData.forEach(q => {
+                    const ans = userAnswers[q.id];
+                    if (ans !== undefined && ans !== null && ans !== '') completed++;
+                });
+                const total = questionsData.length;
+                progressText.textContent = 'Completed: ' + completed + '/' + total;
+                progressBarInner.style.width = total ? (completed / total) * 100 + '%' : '0%';
+            }
+
+            // ==================== RESET ====================
+            function resetAnswers() {
+                if (confirm('Are you sure you want to reset all answers?')) {
+                    userAnswers = {};
+                    checkedState = {};
+                    clearAllHighlights();
+                    resultToast.style.display = 'none';
+                    document.querySelectorAll('.answer-input').forEach(i => {
+                        i.value = '';
+                        i.classList.remove('input-correct', 'input-wrong');
+                    });
+                    document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+                    document.querySelectorAll('.answer-feedback').forEach(f => {
+                        f.classList.remove('show', 'correct-fb', 'wrong-fb');
+                        f.textContent = '';
+                    });
+                    document.querySelectorAll('.answer-item').forEach(i => i.classList.remove(
+                        'answer-correct', 'answer-wrong'));
+                    document.querySelectorAll('.answer-mc-options label').forEach(l => l.classList
+                        .remove('checked-correct', 'checked-wrong'));
+                    updateProgress();
+                    saveToLocalStorage();
+                }
+            }
+
+            function scrollToTop() {
+                leftPanel.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // ==================== RESIZABLE DIVIDER ====================
+            function setupResizableDivider() {
+                let isDragging = false,
+                    startX, startLeftWidth, containerWidth;
+
+                function onMouseDown(e) {
+                    e.preventDefault();
+                    isDragging = true;
+                    resizableDivider.classList.add('dragging');
+                    startX = e.clientX;
+                    containerWidth = mainContainer.getBoundingClientRect().width;
+                    startLeftWidth = leftPanel.getBoundingClientRect().width;
+                    document.body.style.cursor = 'col-resize';
+                    document.body.style.userSelect = 'none';
+                    document.addEventListener('mousemove', onMouseMove);
+                    document.addEventListener('mouseup', onMouseUp);
+                    document.addEventListener('touchmove', onTouchMove, { passive: false });
+                    document.addEventListener('touchend', onTouchEnd);
+                }
+
+                function onMouseMove(e) {
+                    if (!isDragging) return;
+                    const dx = e.clientX - startX;
+                    let newWidth = startLeftWidth + dx;
+                    const minWidth = containerWidth * 0.25;
+                    const maxWidth = containerWidth * 0.80;
+                    newWidth = Math.max(minWidth, Math.min(maxWidth, newWidth));
+                    const ratio = newWidth / containerWidth;
+                    leftPanel.style.width = (ratio * 100) + '%';
+                    document.documentElement.style.setProperty('--left-ratio', ratio);
+                }
+
+                function onMouseUp() {
+                    isDragging = false;
+                    resizableDivider.classList.remove('dragging');
+                    document.body.style.cursor = '';
+                    document.body.style.userSelect = '';
+                    document.removeEventListener('mousemove', onMouseMove);
+                    document.removeEventListener('mouseup', onMouseUp);
+                    document.removeEventListener('touchmove', onTouchMove);
+                    document.removeEventListener('touchend', onTouchEnd);
+                }
+
+                function onTouchMove(e) {
+                    if (!isDragging) return;
+                    e.preventDefault();
+                    const dx = e.touches[0].clientX - startX;
+                    let newWidth = startLeftWidth + dx;
+                    const minWidth = containerWidth * 0.25;
+                    const maxWidth = containerWidth * 0.80;
+                    newWidth = Math.max(minWidth, Math.min(maxWidth, newWidth));
+                    const ratio = newWidth / containerWidth;
+                    leftPanel.style.width = (ratio * 100) + '%';
+                    document.documentElement.style.setProperty('--left-ratio', ratio);
+                }
+
+                function onTouchEnd() { onMouseUp(); }
+
+                resizableDivider.addEventListener('mousedown', onMouseDown);
+                resizableDivider.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
+                    isDragging = true;
+                    resizableDivider.classList.add('dragging');
+                    startX = e.touches[0].clientX;
+                    containerWidth = mainContainer.getBoundingClientRect().width;
+                    startLeftWidth = leftPanel.getBoundingClientRect().width;
+                    document.body.style.userSelect = 'none';
+                    document.addEventListener('mousemove', onMouseMove);
+                    document.addEventListener('mouseup', onMouseUp);
+                    document.addEventListener('touchmove', onTouchMove, { passive: false });
+                    document.addEventListener('touchend', onTouchEnd);
+                });
+            }
+
+            // ==================== MOBILE TABS ====================
+            window.switchMobileTab = function(tab) {
+                const tabQ = document.getElementById('tabQuestionsBtn');
+                const tabA = document.getElementById('tabAnswersBtn');
+                if (tab === 'questions') {
+                    leftPanel.classList.remove('mobile-hidden');
+                    rightPanel.classList.remove('mobile-visible');
+                    tabQ.classList.add('active');
+                    tabA.classList.remove('active');
+                } else {
+                    leftPanel.classList.add('mobile-hidden');
+                    rightPanel.classList.add('mobile-visible');
+                    tabQ.classList.remove('active');
+                    tabA.classList.add('active');
+                }
+            };
+
+            // ==================== INITIALIZATION ====================
+            function init() {
+                loadFromLocalStorage();
+
+                // PDF
+                loadPDF();
+
+                // Answer sheet
+                renderAnswerSheet();
+
+                // Audio
+                const savedCD = currentCD || 'CD1';
+                currentCD = savedCD;
+                document.querySelectorAll('.audio-cd-chip').forEach(chip => {
+                    chip.classList.toggle('active', chip.dataset.cd === savedCD);
+                });
+                audioCdLabel.textContent = '💿 ' + savedCD;
+                currentCdBadge.textContent = '💿 ' + savedCD;
+                nativeAudio.src = testConfig.audioSources[savedCD] || '';
+                nativeAudio.volume = currentVolume / 100;
+                nativeAudio.playbackRate = currentSpeed;
+                audioVolumeSlider.value = isMuted ? 0 : currentVolume;
+                audioSpeedSelect.value = currentSpeed;
+                updateVolumeIcon();
+                updatePlayPauseButton();
+                audioTimeDisplay.textContent = '00:00 / 00:00';
+                audioSeekBar.value = 0;
+                updateSeekBarBackground(0);
+
+                setupResizableDivider();
+
+                if (window.innerWidth <= 768) {
+                    leftPanel.classList.remove('mobile-hidden');
+                    rightPanel.classList.remove('mobile-visible');
+                    document.getElementById('tabQuestionsBtn').classList.add('active');
+                    document.getElementById('tabAnswersBtn').classList.remove('active');
+                }
+
+                // Reapply highlights if checked earlier
+                if (Object.values(checkedState).some(v => v === true)) {
+                    questionsData.forEach(q => {
+                        if (checkedState[q.id]) {
+                            const ua = userAnswers[q.id];
+                            let isCorrect = false;
+                            if (ua === undefined || ua === null || ua === '') isCorrect = false;
+                            else if (q.type === 'mc') isCorrect = (parseInt(ua) === q.correctAnswer);
+                            else if (q.type === 'fill' || q.type === 'short') isCorrect = (String(ua)
+                                .trim().toLowerCase() === String(q.correctAnswer).trim()
+                                .toLowerCase());
+                            else if (q.type === 'number') isCorrect = (parseFloat(ua) === parseFloat(q
+                                .correctAnswer));
+                            else if (q.type === 'date') isCorrect = (String(ua).trim() === String(q
+                                .correctAnswer).trim());
+                            else isCorrect = (String(ua).trim().toLowerCase() === String(q.correctAnswer)
+                                .trim().toLowerCase());
+                            if (isCorrect) applyCorrectHighlight(q);
+                            else applyWrongHighlight(q, ua);
+                        }
+                    });
+                }
+
+                updateProgress();
+                console.log('✅ Learn with Ms. Thúy – PDF Viewer + Answer Sheet ready.');
+            }
+
+            document.addEventListener('DOMContentLoaded', init);
+
+            // Expose to global scope
+            window.selectCD = selectCD;
+            window.togglePlay = togglePlay;
+            window.seekAudio = seekAudio;
+            window.setVolume = setVolume;
+            window.toggleMute = toggleMute;
+            window.setSpeed = setSpeed;
+            window.checkAnswers = checkAnswers;
+            window.resetAnswers = resetAnswers;
+            window.scrollToTop = scrollToTop;
+        })();
+    </script>
+</body>
+</html>
